@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb+srv://smperilla:iZuuJGvAkShTzRJi@sei.9dvatye.mongodb.net/FortuneTeller"
-);
+require("dotenv").config();
+const DATABASE_URL = process.env.DATABASE_URL;
+
+const CONFIG = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
+mongoose.connect(DATABASE_URL, CONFIG);
 mongoose.connection.on("connected", () =>
   console.log("Mongoose connected, sir")
 );
