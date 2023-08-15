@@ -4,7 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
 router.get("/login", (req, res) => {
-  res.send("login page");
+  res.render("auth/login");
 });
 
 module.exports = router;

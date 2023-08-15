@@ -10,6 +10,8 @@ app.set("view engine", "ejs");
 //MIDDLEWARES
 app.use(express.static("public"));
 app.use(expressLayouts);
+app.use(session({ secret: "somestring", cookie: { maxAge: 3600000 } }));
+app.use(express.json());
 
 //Form Data
 app.use(express.urlencoded({ extended: true }));
