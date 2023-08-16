@@ -1,0 +1,23 @@
+<% orders.forEach(order=> { %>
+    <h2>Order for <%=order.userId.name %>
+    </h2>
+    <h4>Total: <%order.total%>
+    </h4>
+
+    <% order.fortunes.forEach(fortune=> {%>
+        <div>
+
+            <p>
+                <%=fortune.name %> - <%=fortune.likelihood %>
+            </p>
+            <p>
+                <%=fortune.description%>
+            </p>
+        </div>
+
+
+
+        <% }) %>
+
+
+            <% }) %>

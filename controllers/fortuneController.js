@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const Fortune = require("../models/fortune");
+const Order = require("../models/order");
 
 router.get("/", async (req, res) => {
   let fortunes = await Fortune.find();
   let randFortune = fortunes[[Math.floor(Math.random() * fortunes.length)]];
-  res.render("fortune/index.ejs", { fortunes, randFortune });
+  res.render("fortune/index.ejs", { fortunes });
 });
 
 router.get("/seed", async (req, res) => {
+  await Order.deleteMany({});
   await Fortune.deleteMany({});
   let seededFortunes = await Fortune.create([
     {
@@ -62,6 +64,39 @@ router.get("/seed", async (req, res) => {
     },
   ]);
   res.send(seededFortunes);
+});
+
+router.post("/order", async (req, res) => {
+  let fortunes = await Fortune.find({ _id: { $in: req.body.fortunes } });
+  req.body.userId = req.session.userId;
+
+  let total = 0;
+  req.body.fortunes.forEach(
+    (fortune) =>
+      (total += fortunes.find((c) => {
+        return c._id.toString() == fortune;
+      }).likelihood)
+  );
+
+  console.log(total);
+  req.body.total = total;
+  let newOrder = await Order.create(req.body);
+  res.json(newOrder);
+});
+
+router.get("/order/:id", async (req, res) => {
+  const order = await Order.findById(req.params.id)
+    .populate("fortunes")
+    .populate("userId");
+  console.log(order);
+  res.render("order/show.ejs", { order });
+});
+
+router.get("/order", async (req, res) => {
+  const orders = await Order.find({ userId: req.session.userId })
+    .populate("fortunes")
+    .populate("userId");
+  res.render("order/index.ejs", { orders });
 });
 
 module.exports = router;

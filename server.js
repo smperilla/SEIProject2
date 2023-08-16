@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const expressLayouts = require("express-ejs-layouts");
-const session = require("express-session");
 const authRoutes = require("./controllers/authController");
+const session = require("express-session");
 const fortuneRoutes = require("./controllers/fortuneController");
 
 app.set("view engine", "ejs");

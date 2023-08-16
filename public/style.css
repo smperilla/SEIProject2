@@ -1,3 +1,13 @@
 h1 {
     color:red;
 }
+
+.landing-hero {
+    display: flex;
+    padding: 5%;
+}
+
+#nav{
+    display:flex;
+    justify-content: space-around;
+}
