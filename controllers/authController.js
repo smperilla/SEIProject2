@@ -16,7 +16,7 @@ router.post("/login", async (req, res) => {
       if (result) {
         req.session.userId = userToLogin._id;
         req.session.username = userToLogin.name;
-        res.send("Logged In!");
+        res.redirect("/fortune");
       } else {
         res.send("Incorrect Password");
       }
