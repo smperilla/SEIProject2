@@ -19,7 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
 
 app.get("/", (req, res) => {
-  res.send("FortuneTeller");
+  res.render("home.ejs");
 });
+
+// app.use("/fortuneteller", fortuneRoutes);
 
 app.listen(PORT, () => console.log("Fortune teller port confirmed", PORT));
