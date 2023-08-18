@@ -1,16 +1,14 @@
-<% fortunes.forEach(fortune=> { %>
+<h1>
+    <%= randFortune.name %>
+</h1>
+<p>
+    <%= randFortune.description %>
+</p>
 
-    <h1>
-        <%= fortune.name %>
-    </h1>
-    <p>
-        <%= fortune.description %>
-    </p>
+<button id="<%= randFortune._id %>" class="addToOrderBtn"> Add to order</button>
 
-    <button id="<%= fortune._id %>" class="addToOrderBtn"> Add to order</button>
-    <% }); %>
 
-        <div>
-            <button id="submit">Submit Order</button>
+<div>
+    <button id="submit">Submit Order</button>
 
-        </div>
+</div>

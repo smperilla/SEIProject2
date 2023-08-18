@@ -6,7 +6,7 @@ const Order = require("../models/order");
 router.get("/", async (req, res) => {
   let fortunes = await Fortune.find();
   let randFortune = fortunes[[Math.floor(Math.random() * fortunes.length)]];
-  res.render("fortune/index.ejs", { fortunes });
+  res.render("fortune/index.ejs", { fortunes, randFortune });
 });
 
 router.get("/seed", async (req, res) => {
