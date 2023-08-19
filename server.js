@@ -5,6 +5,8 @@ const expressLayouts = require("express-ejs-layouts");
 const authRoutes = require("./controllers/authController");
 const session = require("express-session");
 const fortuneRoutes = require("./controllers/fortuneController");
+const mongoose = require("mongoose");
+console.log(mongoose.version);
 
 app.set("view engine", "ejs");
 
