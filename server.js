@@ -25,8 +25,6 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-// app.use("/fortuneteller", fortuneRoutes);
-
 app.use("/fortune", fortuneRoutes);
 
 app.listen(PORT, () => console.log("Fortune teller port confirmed", PORT));

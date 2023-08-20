@@ -99,4 +99,11 @@ router.get("/order", async (req, res) => {
   res.render("order/index.ejs", { orders });
 });
 
+router.delete("/order/:id", async (req, res) => {
+  console.log("DELETING");
+  const id = req.params.id;
+  await Order.findByIdAndRemove(id);
+  res.send("deleted");
+});
+
 module.exports = router;
