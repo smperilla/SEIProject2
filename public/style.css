@@ -1,13 +1,25 @@
 h1 {
-    color:red;
+    color: orange;
+    font-family:Papyrus;
 }
 
 .landing-hero {
     display: flex;
     padding: 5%;
+    background-color:purple;
+
+}
+
+.get-fortune {
+    background-color:purple;
+    color:orange;
+    font-size:20px;
+    
 }
 
 #nav{
     display:flex;
     justify-content: space-around;
+    background-color: orange;
+    font-size: 25px;
 }

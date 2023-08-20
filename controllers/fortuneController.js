@@ -83,13 +83,12 @@ router.delete("/order/:id", async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", async (req, res) => {
-  const updatedOrder = await Order.updateOne({ _id: req.params.id }, req.body, {
-    new: true,
-  });
-  console.log("UPDATING");
-  res.render(`order${req.params.id}`);
-  res.send(updatedOrder);
+router.put("/order/:id", async (req, res) => {
+  console.log("UPDATE ROUTE");
+  const id = req.params.id;
+  await Order.findByIdAndUpdate(id, req.body, { new: true });
+  console.log(JSON.stringify(Order.fortunes));
+  return;
 });
 
 //CREATE

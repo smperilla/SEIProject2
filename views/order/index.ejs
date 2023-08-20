@@ -1,31 +1,35 @@
-<% orders.forEach(order=> { %>
-    <h2>Order for <%=order.userId.name %>
-    </h2>
-    <h4>Total: <%order.total%>
-    </h4>
+<div class="get-fortune">
 
-    <% order.fortunes.forEach(fortune=> {%>
-        <div>
+    <% orders.forEach(order=> { %>
+        <h2>Fortune for <%=order.userId.name %>
+        </h2>
+        <h4>Total: <%order.total%>
+        </h4>
 
-            <p>
-                <a href="/fortune/<%= order._id %>/edit">
-                    <%=fortune.name %>
-                </a>
-                <%=fortune.name %> - <%=fortune.likelihood %>
-            </p>
-            <p>
-                <%=fortune.description%>
-            </p>
-        </div>
+        <% order.fortunes.forEach(fortune=> {%>
+            <div>
 
-        <form action="/fortune/order/<%= order._id %>?_method=DELETE" method="POST">
-            <button type="submit">DELETE</button>
-        </form>
+                <p>
+                    <a href="/fortune/<%= order._id %>/edit">
+                        <%=fortune.name %>
+                    </a>
+                    <%=fortune.name %> - <%=fortune.likelihood %>
+                </p>
+                <p>
+                    <%=fortune.description%>
+                </p>
+            </div>
+
+            <form action="/fortune/order/<%= order._id %>?_method=DELETE" method="POST">
+                <button type="submit">DELETE</button>
+            </form>
 
 
 
-
-        <% }) %>
 
 
             <% }) %>
+
+
+                <% }) %>
+</div>
