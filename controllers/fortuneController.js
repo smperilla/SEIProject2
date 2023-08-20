@@ -66,6 +66,33 @@ router.get("/seed", async (req, res) => {
   res.send(seededFortunes);
 });
 
+//INDEX
+router.get("/order", async (req, res) => {
+  const orders = await Order.find({ userId: req.session.userId })
+    .populate("fortunes")
+    .populate("userId");
+  res.render("order/index.ejs", { orders });
+});
+
+//DELETE
+router.delete("/order/:id", async (req, res) => {
+  console.log("DELETING");
+  const id = req.params.id;
+  await Order.findByIdAndRemove(id);
+  res.send("deleted");
+});
+
+//UPDATE
+router.put("/:id", async (req, res) => {
+  const updatedOrder = await Order.updateOne({ _id: req.params.id }, req.body, {
+    new: true,
+  });
+  console.log("UPDATING");
+  res.render(`order${req.params.id}`);
+  res.send(updatedOrder);
+});
+
+//CREATE
 router.post("/order", async (req, res) => {
   let fortunes = await Fortune.find({ _id: { $in: req.body.fortunes } });
   req.body.userId = req.session.userId;
@@ -84,26 +111,19 @@ router.post("/order", async (req, res) => {
   res.json(newOrder);
 });
 
+//EDIT
+router.get("/:id/edit", async (req, res) => {
+  const foundOrder = await Order.findById(req.params.id);
+  res.render("order/edit.ejs");
+});
+
+//SHOW
 router.get("/order/:id", async (req, res) => {
   const order = await Order.findById(req.params.id)
     .populate("fortunes")
     .populate("userId");
   console.log(order);
   res.render("order/show.ejs", { order });
-});
-
-router.get("/order", async (req, res) => {
-  const orders = await Order.find({ userId: req.session.userId })
-    .populate("fortunes")
-    .populate("userId");
-  res.render("order/index.ejs", { orders });
-});
-
-router.delete("/order/:id", async (req, res) => {
-  console.log("DELETING");
-  const id = req.params.id;
-  await Order.findByIdAndRemove(id);
-  res.send("deleted");
 });
 
 module.exports = router;

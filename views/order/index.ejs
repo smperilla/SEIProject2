@@ -8,6 +8,9 @@
         <div>
 
             <p>
+                <a href="/fortune/<%= order._id %>/edit">
+                    <%=fortune.name %>
+                </a>
                 <%=fortune.name %> - <%=fortune.likelihood %>
             </p>
             <p>
@@ -16,9 +19,9 @@
         </div>
 
 
-        <form action="/fortune/order/<%= order._id %>?_method=DELETE" method="POST">
+        <!-- <form action="/fortune/order/<%= order._id %>?_method=DELETE" method="POST">
             <button type="submit">DELETE</button>
-        </form>
+        </form> -->
 
         <% }) %>
 
