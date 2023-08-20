@@ -15,10 +15,11 @@ app.use(express.static("public"));
 app.use(expressLayouts);
 app.use(session({ secret: "somestring", cookie: { maxAge: 3600000 } }));
 app.use(express.json());
+const methodOverride = require("method-override");
 
 //Form Data
 app.use(express.urlencoded({ extended: true }));
-
+app.use(methodOverride("_method"));
 app.use(authRoutes);
 
 app.get("/", (req, res) => {
