@@ -1,2 +1,30 @@
-HELLO FROM EDIT EJS
+EDIT YOUR FORTUNE
 
+<h1>
+
+    <br>
+    Name: <%= foundOrder.fortunes[0].name %> <br>
+</h1>
+Description: <%= foundOrder.fortunes[0].description %> <br>
+    <br>
+    Likelihood: <%= foundOrder.fortunes[0].likelihood %> <br>
+        <br>
+        Has Come True? <%= foundOrder.fortunes[0].hasComeTrue %> <br>
+            <br>
+
+
+            <form action="/fortune/order/<%=foundOrder.fortunes[0]._id%>?_method=PUT" method="POST">
+                <input type="text" name="name" value="<%=foundOrder.fortunes[0].name %>" placeholder="name"> <br>
+                <input type="text" name="description" value="<%=foundOrder.fortunes[0].description %>"
+                    placeholder="description"> <br>
+
+                <button type="submit">Update Fortune</button>
+
+
+
+
+
+
+
+
+            </form>

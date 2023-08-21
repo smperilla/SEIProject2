@@ -79,15 +79,16 @@ router.delete("/order/:id", async (req, res) => {
   console.log("DELETING");
   const id = req.params.id;
   await Order.findByIdAndRemove(id);
-  res.send("deleted");
+  res.redirect("/fortune/order");
 });
 
 //UPDATE
 router.put("/order/:id", async (req, res) => {
   console.log("UPDATE ROUTE");
+  console.log(req.body);
   const id = req.params.id;
-  await Order.findByIdAndUpdate(id, req.body, { new: true });
-  console.log(JSON.stringify(Order.fortunes));
+  let response = await Fortune.findByIdAndUpdate(id, req.body, { new: true });
+  console.log(response);
   return;
 });
 
@@ -112,8 +113,9 @@ router.post("/order", async (req, res) => {
 
 //EDIT
 router.get("/:id/edit", async (req, res) => {
-  const foundOrder = await Order.findById(req.params.id);
-  res.render("order/edit.ejs");
+  const foundOrder = await Order.findById(req.params.id).populate("fortunes");
+  console.log(foundOrder);
+  res.render("order/edit.ejs", { foundOrder });
 });
 
 //SHOW
