@@ -1,0 +1,18 @@
+<%fortunes.forEach(fortune=> { %>
+
+    <div class="get-fortune">
+
+        <h1>
+            <%= fortune.name %>
+        </h1>
+        <p>
+            <%= fortune.description %>
+        </p>
+
+        <form action="/fortune/<%= fortune._id %>?_method=DELETE" method="POST">
+            <button type="submit"> x </button>
+        </form>
+
+    </div>
+
+    <% }) %>

@@ -9,6 +9,11 @@ router.get("/", async (req, res) => {
   res.render("fortune/index.ejs", { fortunes, randFortune });
 });
 
+router.get("/all", async (req, res) => {
+  let fortunes = await Fortune.find();
+  res.render("fortune/all.ejs", { fortunes });
+});
+
 router.get("/seed", async (req, res) => {
   await Order.deleteMany({});
   await Fortune.deleteMany({});
@@ -74,12 +79,26 @@ router.get("/order", async (req, res) => {
   res.render("order/index.ejs", { orders });
 });
 
-//DELETE
+//NEW
+router.get("/new", async (req, res) => {
+  res.render("fortune/new.ejs");
+});
+
+//DELETE ORDER
 router.delete("/order/:id", async (req, res) => {
-  console.log("DELETING");
+  console.log("DELETING ORDER");
   const id = req.params.id;
   await Order.findByIdAndRemove(id);
   res.redirect("/fortune/order");
+});
+
+//DELETE FORTUNE
+router.delete("/:id", async (req, res) => {
+  console.log("DELETING FORTUNE");
+  const id = req.params.id;
+  await Fortune.findByIdAndRemove(id);
+  // res.redirect("/all");
+  res.send("deleted");
 });
 
 //UPDATE
@@ -93,6 +112,7 @@ router.put("/order/:id", async (req, res) => {
 });
 
 //CREATE
+//RANDOMIZED
 router.post("/order", async (req, res) => {
   let fortunes = await Fortune.find({ _id: { $in: req.body.fortunes } });
   req.body.userId = req.session.userId;
@@ -109,6 +129,13 @@ router.post("/order", async (req, res) => {
   req.body.total = total;
   let newOrder = await Order.create(req.body);
   res.json(newOrder);
+});
+
+//CREATE NEW
+router.post("/", async (req, res) => {
+  const createdFortune = await Fortune.create(req.body);
+  // res.render("fortune/all.ejs");
+  res.send("Fortune Created");
 });
 
 //EDIT
