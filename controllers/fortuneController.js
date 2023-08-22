@@ -97,8 +97,7 @@ router.delete("/:id", async (req, res) => {
   console.log("DELETING FORTUNE");
   const id = req.params.id;
   await Fortune.findByIdAndRemove(id);
-  // res.redirect("/all");
-  res.send("deleted");
+  res.redirect("/fortune/all");
 });
 
 //UPDATE
@@ -134,8 +133,7 @@ router.post("/order", async (req, res) => {
 //CREATE NEW
 router.post("/", async (req, res) => {
   const createdFortune = await Fortune.create(req.body);
-  // res.render("fortune/all.ejs");
-  res.send("Fortune Created");
+  res.redirect("/fortune/all");
 });
 
 //EDIT
