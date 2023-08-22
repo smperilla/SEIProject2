@@ -1,19 +1,23 @@
-<h2>Fortune for <%=order.userId.name %>
-</h2>
-<h4>Total: <%order.total%>
-</h4>
+<div class="get-fortune">
 
-<% order.fortunes.forEach(fortune=> {%>
-    <div>
+    <h2>Fortune for <%=order.userId.name %>
+    </h2>
+    <h4>Total: <%order.total%>
+    </h4>
 
-        <p>
-            <%=fortune.name %> - <%=fortune.likelihood %>
-        </p>
-        <p>
-            <%=fortune.description%>
-        </p>
-    </div>
+    <% order.fortunes.forEach(fortune=> {%>
+        <div>
+
+            <p>
+                <%=fortune.name %> - <%=fortune.likelihood %>
+            </p>
+            <p>
+                <%=fortune.description%>
+            </p>
+        </div>
 
 
 
-    <% }) %>
+        <% }) %>
+
+</div>

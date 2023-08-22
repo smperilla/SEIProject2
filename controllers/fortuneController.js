@@ -67,6 +67,76 @@ router.get("/seed", async (req, res) => {
       likelihood: 1,
       hasComeTrue: true,
     },
+    {
+      name: "Whirlwind",
+      description:
+        "You will sneeze so hard that you'll launch into a parallel universe of perpetual sneezing.",
+      likelihood: 1,
+      hasComeTrue: false,
+    },
+    {
+      name: "Vanishing",
+      description:
+        "You'll find an invisible chair to sit on, only to realize it was a cleverly disguised pile of wet paint.",
+      likelihood: 0.8,
+      hasComeTrue: true,
+    },
+    {
+      name: "Boogie",
+      description:
+        "You'll break into spontaneous dance at the most inappropriate time, sparking an unexpected dance-off.",
+      likelihood: 0.6,
+      hasComeTrue: false,
+    },
+    {
+      name: "Deluge",
+      description:
+        "Opening a celebration popper will reveal a surprise confetti storm that covers your entire home.",
+      likelihood: 0.5,
+      hasComeTrue: true,
+    },
+    {
+      name: "Irony",
+      description:
+        "Your attempts at reverse psychology will work a little too well, leaving everyone confused and frustrated.",
+      likelihood: 0.7,
+      hasComeTrue: false,
+    },
+    {
+      name: "Kazoo",
+      description:
+        "You'll suddenly become a musical prodigy but only for playing the kazoo, earning both applause and bewilderment.",
+      likelihood: 0.5,
+      hasComeTrue: true,
+    },
+    {
+      name: "Sprout",
+      description:
+        "You'll discover the fountain of youth but accidentally spill it, causing nearby plants to grow alarmingly young.",
+      likelihood: 1,
+      hasComeTrue: false,
+    },
+    {
+      name: "Chatter",
+      description:
+        "Your pet will start talking, but their conversation topics will revolve solely around existential cat problems.",
+      likelihood: 0.6,
+      hasComeTrue: true,
+    },
+    {
+      name: "Mower",
+      description:
+        "You'll meet a unicorn, but its main interest will be borrowing your lawnmower for a magical lawn makeover.",
+      likelihood: 0.8,
+      hasComeTrue: false,
+    },
+    {
+      name: "Jitterbug",
+      description:
+        "After consuming an excessive amount of coffee, you'll vibrate into another dimension, reaching peak jitterbug levels.",
+      likelihood: 1,
+      hasComeTrue: true,
+    },
   ]);
   res.send(seededFortunes);
 });
